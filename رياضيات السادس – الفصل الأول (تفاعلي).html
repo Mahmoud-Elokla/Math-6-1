@@ -1,0 +1,133 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>رياضيات السادس – الفصل الأول</title>
+<style>
+:root{--bg:#f4f7ff;--card:#fff;--tx:#1f2547;--mu:#66709a;--ok:#19a974;--no:#e04462;--bd:#e1e6f8;--c:#6c4cf1;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12142b;--card:#1d2142;--tx:#eef0ff;--mu:#a3abd6;--bd:#2f3563;color-scheme:dark}}
+*{box-sizing:border-box}html,body{margin:0}body{background:var(--bg);color:var(--tx);font-family:Tahoma,"Segoe UI",system-ui,sans-serif;line-height:1.7;min-height:100vh}
+header{background:linear-gradient(135deg,var(--c),#ff7ab6);color:#fff;padding:14px 16px;position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+header h1{font-size:1.05rem;margin:0}.sc{display:flex;gap:8px}.sc span{background:#ffffff33;border-radius:20px;padding:2px 12px;font-weight:700}
+main{max-width:900px;margin:auto;padding:12px}
+.units,.tabs,.sub{display:flex;gap:8px;overflow-x:auto;padding:4px 0 8px}
+button{font:inherit;cursor:pointer;border:2px solid var(--bd);background:var(--card);color:var(--tx);border-radius:14px;padding:8px 14px}
+.units button{white-space:nowrap}.on{background:var(--c)!important;color:#fff!important;border-color:var(--c)!important}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:14px;margin:10px 0;box-shadow:0 3px 10px #0000000d}
+details summary{cursor:pointer;font-weight:700}details p{margin:8px 0 0}
+.obj{display:block;width:100%;text-align:right;margin:5px 0}.obj.d{background:#19a97422;border-color:var(--ok)}
+.o{display:block;width:100%;text-align:right;margin:6px 0}.o.g{background:var(--ok);color:#fff;border-color:var(--ok)}.o.b{background:var(--no);color:#fff;border-color:var(--no)}
+.ex{margin-top:6px;color:var(--mu);font-size:.92rem}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:8px}.cols button{width:100%;min-height:48px}
+.sl{border:2px dashed var(--bd);border-radius:12px;padding:8px;margin:6px 0;display:flex;justify-content:space-between;gap:8px;min-height:48px;align-items:center}
+.sl.f{border-style:solid;border-color:var(--ok);background:#19a97422}
+.ch{display:inline-block;margin:4px;background:var(--c);color:#fff;border-radius:12px;padding:6px 12px;cursor:grab;user-select:none}.ch.s{outline:3px solid #ffc83d}
+.sk{animation:sk .4s}@keyframes sk{25%{transform:translateX(8px)}75%{transform:translateX(-8px)}}
+.pri{background:var(--c);color:#fff;border-color:var(--c)}
+#wh{width:min(80vw,300px);display:block;margin:10px auto;transition:transform 4s cubic-bezier(.1,.7,.1,1)}
+.ptr{text-align:center;font-size:2rem;margin-bottom:-18px;position:relative}
+#toast{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:#222;color:#fff;border-radius:20px;padding:8px 18px;opacity:0;transition:.3s;pointer-events:none;z-index:9}#toast.s{opacity:1}
+.fl{position:fixed;top:-30px;font-size:1.6rem;animation:fa 2s linear forwards;pointer-events:none;z-index:8}@keyframes fa{to{transform:translateY(105vh) rotate(360deg)}}
+.bar{height:10px;background:var(--bd);border-radius:6px;overflow:hidden}.bar i{display:block;height:100%;background:var(--c);transition:.4s}
+.big{text-align:center;font-size:2.4rem}
+</style></head><body>
+<header><h1>🎓 رياضيات الصف السادس – الفصل الأول</h1><div class="sc"><span>⭐ <b id="st">0</b></span><span>🏆 <b id="pt">0</b></span></div></header>
+<main><div class="units" id="un"></div><div class="tabs" id="tb"></div><div id="v"></div></main><div id="toast"></div>
+<script>
+const U=[
+{n:"الأعداد الكلية والعشرية",i:"🔢",c:"#6c4cf1",
+obj:["أقرأ الأعداد الكلية والعشرية وأكتبها","أقارن الأعداد وأرتبها وأقرّبها","أجمع وأطرح وأضرب وأقسم الأعداد العشرية","أستخدم خصائص الضرب وترتيب العمليات"],
+les:[["قراءة الأعداد الكلية","الحلقات: الوحدات، الآلاف، الملايين، المليارات، التريليونات. كل حلقة فيها ٣ منازل (آحاد، عشرات، مئات). نقرأ العدد من اليسار ونذكر اسم الحلقة بعد كل ٣ أرقام.<br>مثال: 63,000,000,000,000 = ٦٣ تريليونًا. و 1 تريليون = 1000 مليار."],
+["الكسور العشرية والمقارنة","بعد الفاصلة: جزء من عشرة، جزء من مئة، جزء من ألف… نقارن من اليسار رقمًا برقم. 8.40 = 8.4 و 3.14 < 3.145.<br>للترتيب التصاعدي نبدأ بالأصغر."],
+["التقريب والعمليات","لتقريب رقم ننظر للرقم الذي على يمينه: 5 أو أكثر نزيد، وأقل من 5 نبقي. مثال: 569 ≈ 570 لأقرب عشرة.<br>الضرب في 10 / 100 / 1000 نحرك الفاصلة يمينًا ١ / ٢ / ٣ منازل، وفي 0.1 / 0.01 يسارًا.<br>ترتيب العمليات: الأقواس ثم الضرب والقسمة ثم الجمع والطرح."],
+["خصائص الضرب","الإبدالية: 5×20 = 20×5. التجميعية: 3×(2×5) = (3×2)×5. العنصر المحايد: 1×40 = 40. الضرب في الصفر: 0×9999 = 0. التوزيعية: 6×(4+5) = (6×4)+(6×5)."]],
+mc:[["١ تريليون = كم مليارًا؟",["100","1000","10000","1000000"],1,"1 تريليون = 1000 مليار."],["تقريب 569 لأقرب عشرة:",["560","570","600","500"],1,"الرقم 9 ≥ 5 فنزيد."],["ناتج 12.5 × 0.1 =",["125","1.25","0.125","12.5"],1,"نحرك الفاصلة منزلة لليسار."],["ناتج 4 + 8 ÷ 2 =",["6","8","2","10"],1,"القسمة أولًا: 8÷2=4 ثم 4+4=8."],["ناتج 2120 ÷ 20 =",["16","106","160","116"],1,"20 × 106 = 2120."]],
+tf:[["3.14 < 3.145",true,"بإضافة صفر: 3.140 < 3.145."],["0.51 < 0.5",false,"0.51 أكبر من 0.50."],["0.3 × 0.3 = 0.09",true,"3×3=9 ومنزلتان عشريتان."],["خاصية العنصر المحايد: الضرب في 1 يعطي العدد نفسه",true,"مثل 1×40=40."]],
+mt:[["الإبدالية","5×20 = 20×5"],["التجميعية","3×(2×5) = (3×2)×5"],["العنصر المحايد","1×40 = 40"],["الضرب في صفر","0×9999 = 0"]],
+dr:[["0.1 × 93","9.3"],["0.01 × 93","0.93"],["100 × 0.723","72.3"],["1000 × 0.9","900"]]},
+{n:"الهندسة",i:"📐",c:"#0aa6c8",
+obj:["أتعرف عناصر الدائرة وأرسمها","أجد قياسات الزوايا المتقابلة بالرأس والمتكاملة والمتتامة","أستخدم مجموع زوايا المثلث والرباعي","أصنف الأشكال الرباعية وأتعرف التناظر والحركات"],
+les:[["الدائرة والمستقيمات","نصف القطر: من المركز إلى الدائرة. القطر: يمر بالمركز وطرفاه على الدائرة. الوتر: يصل نقطتين على الدائرة. المستقيمان: متوازيان (لا يتقاطعان) أو متقاطعان أو متعامدان (زاوية قائمة)."],
+["الزوايا","المتقابلتان بالرأس متساويتان. المتكاملتان مجموعهما 180°، والمتتامتان مجموعهما 90°.<br>مجموع زوايا المثلث = 180° ومجموع زوايا الشكل الرباعي = 360°."],
+["الأشكال والتناظر","متوازي الأضلاع: كل ضلعين متقابلين متوازيان ومتساويان. المعين: أضلاعه الأربعة متطابقة. المستطيل: زواياه الأربع قوائم. المربع: معين ومستطيل معًا. شبه المنحرف: ضلعان فقط متوازيان.<br>الحركات: انسحاب، انعكاس، دوران. خط التناظر يقسم الشكل إلى نصفين متطابقين."]],
+mc:[["مجموع قياسات زوايا المثلث:",["90°","180°","270°","360°"],1,"مجموعها 180°."],["مجموع زوايا الشكل الرباعي:",["180°","270°","360°","90°"],2,"مجموعها 360°."],["زاويتان متكاملتان، قياس إحداهما 43°، فالأخرى:",["47°","137°","147°","57°"],1,"180 − 43 = 137."],["مثلث زاويتاه 70° و 30°، فالثالثة:",["80°","90°","100°","70°"],0,"180 − 100 = 80."],["زاويتان متتامتان، إحداهما 35°، فالأخرى:",["145°","65°","55°","45°"],2,"90 − 35 = 55."]],
+tf:[["القطر قطعة مستقيمة تمر بالمركز وطرفاها على الدائرة",true,"هذا تعريف القطر."],["مجموع زوايا الرباعي = 180°",false,"المجموع 360°."],["الزاويتان المتقابلتان بالرأس متساويتان",true,"خاصية الزوايا المتقابلة بالرأس."],["المربع ليس مستطيلًا",false,"المربع مستطيل أضلاعه متطابقة."]],
+mt:[["متوازي أضلاع","كل ضلعين متقابلين متوازيان"],["معين","أضلاعه الأربعة متطابقة"],["مستطيل","أربع زوايا قائمة"],["شبه منحرف","ضلعان فقط متوازيان"]],
+dr:[["زوايا المثلث","180°"],["زوايا الرباعي","360°"],["زاويتان متتامتان","90°"],["زاويتان متكاملتان","180°"]]},
+{n:"الأعداد والكسور",i:"🧮",c:"#f08a1c",
+obj:["أستخدم قواعد قابلية القسمة","أحلل العدد إلى عوامله الأولية وأكتب الأسس","أجد ع.م.أ وم.م.أ","أكتب كسورًا متكافئة وأقارنها وأحولها لعشرية"],
+les:[["قابلية القسمة والأسس","على 2: آحاده زوجي. على 3: مجموع أرقامه يقبل القسمة على 3. على 5: آحاده 0 أو 5. على 9: مجموع أرقامه يقبل القسمة على 9. على 10: آحاده 0.<br>الأس: 4³ = 4×4×4 = 64."],
+["العوامل الأولية و ع.م.أ / م.م.أ","العدد الأولي له عاملان فقط (1 ونفسه) مثل 2, 3, 5, 7, 11, 37. تحليل 12 = 2²×3.<br>ع.م.أ لـ 18 و 30 هو 6. م.م.أ لـ 4 و 6 هو 12."],
+["الكسور","الكسور المتكافئة: نضرب البسط والمقام أو نقسمهما على العدد نفسه: 3/10 = 15/50. الكسر المركب 13/4 = 3 1/4. للتحويل لعشري نقسم البسط على المقام: 3/5 = 0.6."]],
+mc:[["العدد 204 يقبل القسمة على:",["5","4 و 2 و 3","9","10"],1,"زوجي، ومجموع أرقامه 6، و04 تقبل القسمة على 4."],["أي عدد أولي؟",["15","39","37","51"],2,"37 لا يقبل القسمة إلا على 1 ونفسه."],["ع.م.أ للعددين 18 و 30 =",["3","6","9","12"],1,"العوامل المشتركة الأكبر 6."],["م.م.أ للعددين 4 و 6 =",["24","12","10","2"],1,"أول مضاعف مشترك 12."],["الكسر 13/4 كعدد كسري:",["3 1/4","2 1/4","4 1/3","3 1/3"],0,"13÷4 = 3 والباقي 1."]],
+tf:[["العدد 333 يقبل القسمة على 9",true,"مجموع أرقامه 9."],["4² = 8",false,"4² = 4×4 = 16."],["3/4 < 9/12",false,"9/12 = 3/4 فهما متساويان."],["0.6 = 3/5",true,"3÷5 = 0.6."]],
+mt:[["12","2²×3"],["18","2×3²"],["36","2²×3²"],["20","2²×5"]],
+dr:[["1/2","0.5"],["1/4","0.25"],["3/5","0.6"],["3/4","0.75"]]},
+{n:"عمليات الكسور",i:"🍕",c:"#e0457b",
+obj:["أجمع وأطرح الكسور والأعداد الكسرية","أضرب الكسور والأعداد الكسرية","أجد المعكوس الضربي وأقسم الكسور","أحل مسائل حياتية على الكسور"],
+les:[["الجمع والطرح","بمقامات موحدة: نجمع/نطرح البسوط ونبقي المقام. 1/5 + 2/5 = 3/5.<br>بمقامات مختلفة: نوحد المقامات بالم.م.أ أولًا: 1/2 + 1/3 = 3/6 + 2/6 = 5/6.<br>الأعداد الكسرية: نجمع الأعداد الصحيحة والكسور كلًا على حدة."],
+["الضرب","نضرب البسط في البسط والمقام في المقام ثم نبسّط: 2/3 × 3/5 = 6/15 = 2/5. العدد الكسري نحوله لكسر غير فعلي قبل الضرب."],
+["القسمة","المعكوس الضربي للكسر نقلب بسطه ومقامه: معكوس 5/6 هو 6/5، ومعكوس 14 هو 1/14.<br>قسمة كسر على كسر = ضرب الكسر الأول في معكوس الثاني: 6/7 ÷ 1/3 = 6/7 × 3 = 18/7."]],
+mc:[["6 5/7 + 4 3/7 =",["10 1/7","11 1/7","10 8/7","11 8/7"],1,"5/7+3/7 = 8/7 = 1 1/7، والمجموع 11 1/7."],["2 1/5 + 3 3/5 =",["5 4/5","6 4/5","5 3/5","5 1/5"],0,"2+3=5 و 1/5+3/5=4/5."],["3/7 × 7 =",["3","7","21","1"],0,"7 تختصر مع المقام."],["6/7 ÷ 1/3 =",["2/7","18/7","1/2","6/21"],1,"6/7 × 3 = 18/7."],["3/4 من 200 =",["50","100","150","175"],2,"200÷4 × 3 = 150."]],
+tf:[["1/2 + 1/3 = 2/5",false,"الصحيح 5/6 بعد توحيد المقامات."],["المعكوس الضربي للكسر 5/6 هو 6/5",true,"نقلب البسط والمقام."],["قسمة كسر على كسر تعني الضرب في معكوس المقسوم عليه",true,"هذه قاعدة القسمة."],["كم 1/4 يوجد في 3؟ الجواب 12",true,"3 ÷ 1/4 = 3×4 = 12."]],
+mt:[["معكوس 5/6","6/5"],["معكوس 3/8","8/3"],["معكوس 14","1/14"],["معكوس 1/12","12"]],
+dr:[["1/2 × 3/4","3/8"],["2/3 × 3/5","2/5"],["1/10 ÷ 1/5","1/2"],["5/7 × 3/5","3/7"]]}];
+const $=s=>document.querySelector(s),sh=a=>[...a].sort(()=>Math.random()-.5);
+const f=s=>String(s).replace(/(\d[\d.,\/×÷+\-−=<>²³°() ]*[\d²³°)]|\d)/g,"<bdi>$1</bdi>");
+let S={p:0,d:{},b:0},u=0,tab="les",sub="mc";
+try{const x=localStorage.getItem("m6");if(x)S=JSON.parse(x)}catch(e){}
+const save=()=>{try{localStorage.setItem("m6",JSON.stringify(S))}catch(e){}};
+function head(){$("#pt").textContent=S.p;$("#st").textContent=Math.floor(S.p/40)+S.b}
+function toast(t){const e=$("#toast");e.textContent=t;e.className="s";setTimeout(()=>e.className="",1500)}
+function conf(){for(let i=0;i<14;i++){const e=document.createElement("div");e.className="fl";e.textContent=["⭐","🎉","✨","🌟"][i%4];e.style.left=Math.random()*95+"%";e.style.animationDelay=Math.random()*.5+"s";document.body.appendChild(e);setTimeout(()=>e.remove(),2800)}}
+const PR=["أحسنت! 🎉","رائع! 🌟","ممتاز! 👏","عمل مذهل! 💪"];
+function add(n){S.p+=n;save();head()}
+function ok(){add(10);toast(PR[Math.random()*4|0]);if(Math.random()<.3)conf()}
+function nav(){
+ $("#un").innerHTML=U.map((x,i)=>`<button class="${i==u?"on":""}" onclick="u=${i};render()">${x.i} الوحدة ${i+1}</button>`).join("");
+ const T=[["les","📖 الدروس"],["act","🎮 الأنشطة"],["wh","🎡 عجلة الحظ"],["fin","📝 التقويم"]];
+ $("#tb").innerHTML=T.map(t=>`<button class="${t[0]==tab?"on":""}" onclick="tab='${t[0]}';render()">${t[1]}</button>`).join("");
+ document.documentElement.style.setProperty("--c",U[u].c)}
+function render(){nav();const v=$("#v");v.innerHTML="";({les,act,wh,fin})[tab](v);head()}
+function el(h,c){const d=document.createElement("div");d.className=c||"card";d.innerHTML=h;return d}
+function les(v){const X=U[u],k="o"+u,dn=S.d[k]||[];
+ const c=el(`<h3>${X.i} ${X.n}</h3><b>🎯 أهداف التعلم (اضغط عند إتقان الهدف)</b>`);
+ X.obj.forEach((o,i)=>{const b=document.createElement("button");b.className="obj"+(dn.includes(i)?" d":"");b.innerHTML=(dn.includes(i)?"✅ ":"⬜ ")+f(o);b.onclick=()=>{if(!dn.includes(i)){dn.push(i);S.d[k]=dn;add(5);toast("+5 نقاط 🎯");render()}};c.appendChild(b)});
+ v.appendChild(c);
+ X.les.forEach((l,i)=>{const d=document.createElement("details");d.className="card";d.innerHTML=`<summary>${i+1}. ${l[0]}</summary><p>${f(l[1])}</p>`;const b=document.createElement("button");b.textContent=S.d["l"+u+i]?"✅ فهمت":"فهمت الشرح +5";b.className="pri";b.style.marginTop="8px";b.onclick=()=>{if(!S.d["l"+u+i]){S.d["l"+u+i]=1;add(5);b.textContent="✅ فهمت"}};d.appendChild(b);v.appendChild(d)})}
+function qEl(x,cb){const c=el(`<b>${f(x.q)}</b>`),ex=el("","ex");let lk=0;
+ x.o.forEach((o,i)=>{const b=document.createElement("button");b.className="o";b.innerHTML=f(o);b.onclick=()=>{if(lk)return;lk=1;const r=i==x.a;b.classList.add(r?"g":"b");if(!r)c.querySelectorAll(".o")[x.a].classList.add("g");ex.innerHTML=(r?"✅ إجابة صحيحة. ":"❌ الصحيح موضّح بالأخضر. ")+f(x.e);r&&ok();cb&&cb(r)};c.appendChild(b)});c.appendChild(ex);return c}
+const mcs=X=>X.mc.map(m=>({q:m[0],o:m[1],a:m[2],e:m[3]})),tfs=X=>X.tf.map(t=>({q:t[0],o:["✔ صحيح","✘ خطأ"],a:t[1]?0:1,e:t[2]}));
+function act(v){const S2=[["mc","اختيار من متعدد"],["tf","صح أم خطأ"],["mt","مطابقة"],["dr","سحب وإفلات"]];
+ const s=el("","sub");S2.forEach(t=>{const b=document.createElement("button");b.textContent=t[1];b.className=t[0]==sub?"on":"";b.onclick=()=>{sub=t[0];render()};s.appendChild(b)});v.appendChild(s);
+ const X=U[u];
+ if(sub=="mc")mcs(X).forEach(q=>v.appendChild(qEl(q)));
+ if(sub=="tf")tfs(X).forEach(q=>v.appendChild(qEl(q)));
+ if(sub=="mt"){const c=el("<b>اضغط عنصرًا من اليمين ثم ما يطابقه من اليسار</b>"),g=el("","cols");let L=null,n=0;
+  const A=X.mt.map((p,i)=>[p[0],i]),B=sh(X.mt.map((p,i)=>[p[1],i]));
+  const col=(arr,side)=>{const d=document.createElement("div");arr.forEach(a=>{const b=document.createElement("button");b.innerHTML=f(a[0]);b.style.marginBottom="8px";b.onclick=()=>{if(b.disabled)return;if(side=="l"){c.querySelectorAll(".s1").forEach(e=>e.classList.remove("s1","on"));L=[b,a[1]];b.classList.add("s1","on")}else if(L){if(L[1]==a[1]){[L[0],b].forEach(e=>{e.disabled=1;e.classList.remove("on");e.style.background="var(--ok)";e.style.color="#fff"});L=null;ok();if(++n==A.length){toast("🏅 أكملت المطابقة!");conf()}}else{b.classList.add("sk");setTimeout(()=>b.classList.remove("sk"),400);toast("حاول مرة أخرى 🔁")}}};d.appendChild(b)});return d};
+  g.append(col(A,"l"),col(B,"r"));c.appendChild(g);v.appendChild(c)}
+ if(sub=="dr"){const c=el("<b>اسحب الإجابة إلى مكانها (أو اضغط الإجابة ثم المربع)</b>"),pool=el("","");let sel=null,n=0;
+  X.dr.forEach(p=>{const s=document.createElement("div");s.className="sl";s.dataset.a=p[1];s.innerHTML=`<span>${f(p[0])} =</span><span class="z">؟</span>`;
+   const put=ch=>{if(s.classList.contains("f")||!ch)return;if(ch.dataset.v==p[1]){s.classList.add("f");s.querySelector(".z").innerHTML=f(p[1]);ch.remove();sel=null;ok();if(++n==X.dr.length){toast("🏅 أحسنت!");conf()}}else{s.classList.add("sk");setTimeout(()=>s.classList.remove("sk"),400);toast("ليس هنا 🙂")}};
+   s.ondragover=e=>e.preventDefault();s.ondrop=e=>{e.preventDefault();put([...pool.children].find(x=>x.dataset.v==e.dataTransfer.getData("t")))};s.onclick=()=>put(sel);c.appendChild(s)});
+  sh(X.dr.map(p=>p[1])).forEach(a=>{const h=document.createElement("span");h.className="ch";h.draggable=true;h.dataset.v=a;h.innerHTML=f(a);h.ondragstart=e=>e.dataTransfer.setData("t",a);h.onclick=()=>{pool.querySelectorAll(".ch").forEach(x=>x.classList.remove("s"));sel=h;h.classList.add("s")};pool.appendChild(h)});
+  c.appendChild(pool);v.appendChild(c)}}
+let rot=0,spin=0;
+function wh(v){const L=["الوحدة 1","الوحدة 2","الوحدة 3","الوحدة 4","+10 🎁","+5 🎁"],C=["#6c4cf1","#0aa6c8","#f08a1c","#e0457b","#19a974","#f5b82e"];
+ let s="";for(let i=0;i<6;i++){const a=i*60*Math.PI/180,b=(i+1)*60*Math.PI/180,m=(i*60+30)*Math.PI/180;
+  s+=`<path d="M100 100L${100+95*Math.sin(a)} ${100-95*Math.cos(a)}A95 95 0 0 1 ${100+95*Math.sin(b)} ${100-95*Math.cos(b)}Z" fill="${C[i]}"/><text x="${100+62*Math.sin(m)}" y="${100-62*Math.cos(m)}" fill="#fff" font-size="11" font-weight="700" text-anchor="middle" transform="rotate(${i*60+30} ${100+62*Math.sin(m)} ${100-62*Math.cos(m)})">${L[i]}</text>`}
+ const c=el(`<div class="ptr">▼</div><svg id="wh" viewBox="0 0 200 200" style="transform:rotate(${rot}deg)">${s}</svg>`);
+ const b=document.createElement("button");b.className="pri";b.textContent="🎡 أدِر العجلة";b.style.cssText="display:block;margin:auto";const q=el("","");
+ b.onclick=()=>{if(spin)return;spin=1;q.innerHTML="";rot+=1440+Math.random()*360|0;$("#wh").style.transform=`rotate(${rot}deg)`;
+  setTimeout(()=>{spin=0;const i=Math.floor(((360-rot%360)%360)/60);
+   if(i<4){q.appendChild(el(`<b>سؤال من ${L[i]} – ${U[i].n}</b>`));const X=U[i];q.appendChild(qEl(sh([...mcs(X),...tfs(X)])[0]))}
+   else{const n=i==4?10:5;add(n);toast("🎁 +"+n+" نقاط");conf();q.appendChild(el(`<div class="big">🎁 +${n}</div>`))}},4100)};
+ c.appendChild(b);v.append(c,q)}
+let F=null;
+function fin(v){if(!F){const c=el(`<div class="big">📝</div><h3>التقويم النهائي</h3><p>١٢ سؤالًا من الوحدات الأربع مع تصحيح فوري. ٣ نجوم لمن يحقق ٩٠٪ فأكثر!</p>${S.best?`<p>أفضل نتيجة: ${"⭐".repeat(S.best>3?3:S.best)}</p>`:""}`),b=document.createElement("button");b.className="pri";b.textContent="ابدأ التقويم";
+  b.onclick=()=>{let Q=[];U.forEach(X=>Q.push(...sh(mcs(X)).slice(0,2),sh(tfs(X))[0]));F={Q:sh(Q),i:0,s:0};render()};c.appendChild(b);v.appendChild(c);return}
+ if(F.i>=F.Q.length){const p=Math.round(F.s/F.Q.length*100),st=p>=90?3:p>=60?2:1;if(st>(S.b||0)){S.b=st;save()}
+  const c=el(`<div class="big">${"⭐".repeat(st)}</div><h3 style="text-align:center">نتيجتك ${F.s} / ${F.Q.length} (${p}٪)</h3><p style="text-align:center">${p>=90?"أنت بطل الرياضيات! 🏆":p>=60?"أداء جيد، راجع الدروس وحاول مجددًا 💪":"لا تقلق، راجع الدروس وجرّب الأنشطة ثم أعد المحاولة 📚"}</p>`);conf();
+  const b=document.createElement("button");b.className="pri";b.textContent="إعادة التقويم";b.onclick=()=>{F=null;render()};c.appendChild(b);v.appendChild(c);head();return}
+ const x=F.Q[F.i];v.appendChild(el(`<div class="bar"><i style="width:${F.i/F.Q.length*100}%"></i></div><small>السؤال ${F.i+1} من ${F.Q.length}</small>`));
+ const nx=document.createElement("button");nx.className="pri";nx.textContent=F.i==F.Q.length-1?"عرض النتيجة":"التالي ◀";nx.style.display="none";nx.onclick=()=>{F.i++;render()};
+ v.appendChild(qEl(x,r=>{r&&F.s++;nx.style.display="block"}));v.appendChild(nx)}
+render();
+</script></body></html>
